@@ -9,10 +9,12 @@ public class move : MonoBehaviour
     public float rotationSpeed = 1f; 
     private Rigidbody rb; 
     private float yRotate = 0f; 
+    private Vector3 startPosition = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startPosition = transform.position;
     }
 
     void Jump()
@@ -41,7 +43,7 @@ bool isGrounded()
     0.6f,layerMask);
 
 }
-
+ 
 
     void Update()
     {
@@ -77,4 +79,10 @@ bool isGrounded()
 
 
     }
+private void OnTriggerEnter(Collider other)
+{
+transform.position = startPosition;
+rb.velocity = Vector3.zero;
+}
+
 }
